@@ -1,0 +1,9 @@
+.theme-button {
+    background-color: var(--color-primary);
+    color: var(--color-light-solid);
+    border-radius: var(--border-radius);
+
+    min-width: 8rem;
+    height: 3rem;
+    cursor: pointer;
+}

@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:css-modules/recommended"
+  ],
+  "root": true,
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "css-modules"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/restrict-plus-operands": "off",
+    "css-modules/no-unused-class": "off",
+    "css-modules/no-undef-class": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
+  },
+  "env": {
+    "node": true,
+    "browser": true
+  }
+}
