@@ -2,7 +2,9 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:css-modules/recommended"
+    "plugin:css-modules/recommended",
+    "plugin:import/typescript",
+    "prettier"
   ],
   "root": true,
   "plugins": ["react", "react-hooks", "@typescript-eslint", "css-modules"],
@@ -18,7 +20,17 @@
     "@typescript-eslint/restrict-plus-operands": "off",
     "css-modules/no-unused-class": "off",
     "css-modules/no-undef-class": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "off",
+    "import/no-unresolved": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
   },
   "env": {
     "node": true,
