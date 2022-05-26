@@ -2,6 +2,7 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
     "styled-components.vscode-styled-components",
     "coenraads.bracket-pair-colorizer-2",
     "ms-vscode-remote.remote-wsl",

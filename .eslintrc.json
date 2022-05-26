@@ -1,14 +1,14 @@
 {
   "extends": [
+    "vtex",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:css-modules/recommended",
-    "plugin:import/typescript",
-    "prettier"
+    "plugin:css-modules/recommended"
   ],
   "root": true,
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "css-modules"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "rules": {
+    "no-console":"warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "camelcase": "off",
@@ -20,17 +20,7 @@
     "@typescript-eslint/restrict-plus-operands": "off",
     "css-modules/no-unused-class": "off",
     "css-modules/no-undef-class": "off",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "import/no-unresolved": "error"
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
-  },
-  "parserOptions": {
-    "ecmaVersion": 7,
-    "sourceType": "module"
+    "@typescript-eslint/ban-ts-comment": "off"
   },
   "env": {
     "node": true,

@@ -89,4 +89,25 @@ body {
     font-size: 1rem;
     line-height: 1.25rem;
   }
+
+  input{box-sizing:border-box}
+
+  .page-container {
+    min-height: 100vh;
+  }
+
+  .input-space {
+    margin: 16px 0;
+  }
+
+  .input-100w {
+    input, button {
+      width: 100%;
+    }
+  }
+
+  .input-label {
+    margin: 0;
+    margin-bottom: 8px;
+  }
 }

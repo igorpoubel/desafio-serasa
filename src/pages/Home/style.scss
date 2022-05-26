@@ -1,0 +1,17 @@
+.page-content {
+  display: flex;
+  justify-content: center;
+
+  .message {
+    text-align: center;
+  }
+
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 100vh;
+  }
+}

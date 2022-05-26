@@ -1,5 +1,16 @@
-.star-input {
+.star-wrapper {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .star-input {
+    display: flex;
+  }
+
+  .star-button {
+    background: none;
+    border: none;
+  }
 
   .star {
     cursor: pointer;

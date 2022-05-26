@@ -1,7 +1,8 @@
-.theme-button {
+.button {
     background-color: var(--color-primary);
     color: var(--color-light-solid);
     border-radius: var(--border-radius);
+    border: none;
 
     min-width: 8rem;
     height: 3rem;
