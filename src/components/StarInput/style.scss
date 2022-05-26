@@ -1,0 +1,12 @@
+.star-input {
+  display: flex;
+
+  .star {
+    cursor: pointer;
+    &.hover, &.checked {
+      .content-fill {
+        fill: #f5c542;
+      }
+    }
+  }
+}

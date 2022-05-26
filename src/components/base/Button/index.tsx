@@ -4,11 +4,9 @@ import './style.scss'
 
 interface Props {
   children: React.ReactNode
-  className?: string
 }
 
-const Button = (componentProps: Props) => {
-  const { children, className, ...props } = componentProps
+const Button = ({ children, className, ...props }: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return <button {...props} className={`theme-button ${className}`}>{children}</button>
 }
 
