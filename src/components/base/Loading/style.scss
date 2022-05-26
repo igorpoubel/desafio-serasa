@@ -105,3 +105,27 @@
     opacity: 0.44;
   }
 }
+
+.loader-icon {
+  .p1 {
+    animation: scale1 1s infinite;
+  }
+  .p2 {
+    animation: scale2 1s infinite;
+  }
+  .p3 {
+    animation: scale3 1s infinite;
+  }
+  .p4 {
+    animation: scale4 1s infinite;
+  }
+  .p5 {
+    animation: scale5 1s infinite;
+  }
+  .p6 {
+    animation: scale6 1s infinite;
+  }
+  .p7 {
+    animation: scale7 1s infinite;
+  }
+}

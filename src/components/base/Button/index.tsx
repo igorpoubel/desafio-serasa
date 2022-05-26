@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'utils/classNames'
 
 import './style.scss'
 
@@ -13,7 +14,11 @@ const Button = ({
 }: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <div className="input-100w">
-      <button type="button" {...props} className={`button ${className}`}>
+      <button
+        type="button"
+        {...props}
+        className={classNames('button', `${className || ''}`)}
+      >
         {children}
       </button>
     </div>

@@ -14,9 +14,9 @@ const Input = ({
   return (
     <div className="input input-space input-100w">
       {label && (
-        <h5 className="input-label" aria-label={label}>
+        <label className="input-label" htmlFor={props.id}>
           {label}
-        </h5>
+        </label>
       )}
       <input type={type || 'text'} {...props} />
     </div>

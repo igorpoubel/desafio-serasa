@@ -1,0 +1,19 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+
+  background-color: var(--color-light-solid);
+  padding: 16px;
+  border-radius: var(--border-radius);
+
+  display: flex;
+  flex-direction: column;
+
+  .modal-message {
+    margin: 0;
+    margin-top: 16px;
+  }
+}

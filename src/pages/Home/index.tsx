@@ -1,6 +1,9 @@
 import Logo from 'components/base/Icons/Logo'
+import Loading from 'components/base/Loading'
+import Modal from 'components/base/Modal'
 import type { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
+import fakeSend from 'utils/fakeSend'
 
 import Button from '../../components/base/Button'
 import Input from '../../components/base/Input'
@@ -16,20 +19,26 @@ const DEFAULT_FORM_VALUES = {
 
 function Home() {
   const [values, setValues] = useState(DEFAULT_FORM_VALUES)
+  const [loading, setLoading] = useState(false)
 
   // useEffect(() => {
   //   console.log(values);
   // }, [values])
   console.log(values)
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    console.log('submit', e.target)
 
     const data = new FormData(e.target as HTMLFormElement)
+    const dataEntries = Object.fromEntries(data.entries())
 
-    console.log(Object.fromEntries(data.entries()))
-
-    console.log('submit')
+    setLoading(true)
+    await fakeSend(2000).then(() => {
+      console.log('ok')
+      setLoading(false)
+      setValues(DEFAULT_FORM_VALUES)
+    })
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +58,7 @@ function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            <Logo width={200} />
+            <Logo role="img" aria-label="logomarca Serasa" width={200} />
           </a>
         </div>
         <h4 className="message">
@@ -64,12 +73,14 @@ function Home() {
 
           <Input
             label="Nome"
+            id="nome"
             name="nome"
             value={values.nome}
             onChange={handleChange}
           />
           <Input
             label="Comentário (Opcional)"
+            id="comentario"
             name="comentario"
             value={values.comentario}
             onChange={handleChange}
@@ -77,6 +88,12 @@ function Home() {
           <Button type="submit">Enviar Avaliação</Button>
         </form>
       </section>
+      {loading && (
+        <Modal>
+          <Loading />
+          <h5 className="modal-message">Aguarde, estamos processando</h5>
+        </Modal>
+      )}
     </section>
   )
 }

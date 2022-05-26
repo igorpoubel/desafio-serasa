@@ -1,7 +1,15 @@
 .input {
   display: flex;
   flex-direction: column;
-  .input-label { display: flex; }
+  .input-label {
+    font-weight: bold;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    @media screen and (min-width: 63.5rem) {
+      font-size: 1.25rem;
+      line-height: 1.375rem;
+    }
+  }
 
   input {
     padding: 0;
