@@ -1,9 +1,11 @@
 import Logo from 'components/base/Icons/Logo'
+import LogoSmall from 'components/base/Icons/LogoSmall'
 import Loading from 'components/base/Loading'
 import Modal from 'components/base/Modal'
 import type { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
 import fakeSend from 'utils/fakeSend'
+import normalizeObjFormData from 'utils/normalizeObjFormData'
 
 import Button from '../../components/base/Button'
 import Input from '../../components/base/Input'
@@ -11,33 +13,62 @@ import StarInput from '../../components/StarInput'
 
 import './style.scss'
 
-const DEFAULT_FORM_VALUES = {
+interface ValuesTypes {
+  [k: string]: string | number
+}
+
+const DEFAULT_FORM_VALUES: ValuesTypes = {
   nota: 0,
   nome: '',
   comentario: '',
 }
 
+const DEFAULT_FORM_VALIDATION_STATUS = {
+  nota: true,
+  nome: true,
+}
+
 function Home() {
   const [values, setValues] = useState(DEFAULT_FORM_VALUES)
   const [loading, setLoading] = useState(false)
-
-  // useEffect(() => {
-  //   console.log(values);
-  // }, [values])
-  console.log(values)
+  const [validacao, setValidacao] = useState(DEFAULT_FORM_VALIDATION_STATUS)
+  const [cadastroConcluido, setCadastroConcluido] = useState(false)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    console.log('submit', e.target)
 
     const data = new FormData(e.target as HTMLFormElement)
-    const dataEntries = Object.fromEntries(data.entries())
+    const dataEntries = Object.fromEntries(data.entries()) // dados a serem enviados
+
+    // console.log(typeof dataEntries.nota)
+    const { nota, nome } = dataEntries
+
+    if (nota === '0' || (nome as string).length < 3) {
+      let tmpValidacao = DEFAULT_FORM_VALIDATION_STATUS
+
+      if (nota === '0') {
+        tmpValidacao = { ...tmpValidacao, nota: false }
+      }
+
+      if ((nome as string).length < 3) {
+        tmpValidacao = { ...tmpValidacao, nome: false }
+      }
+
+      setValidacao(tmpValidacao)
+
+      return null
+    }
 
     setLoading(true)
     await fakeSend(2000).then(() => {
-      console.log('ok')
       setLoading(false)
       setValues(DEFAULT_FORM_VALUES)
+      setCadastroConcluido(true)
+      setValidacao(DEFAULT_FORM_VALIDATION_STATUS)
+
+      setTimeout(() => {
+        setCadastroConcluido(false)
+      }, 5000)
     })
   }
 
@@ -67,7 +98,10 @@ function Home() {
         <form onSubmit={handleSubmit}>
           <StarInput
             label="Marque de 1 à 5 estrelas"
-            nota={values.nota}
+            nota={+values.nota}
+            isValid={validacao.nota}
+            errorMessage="marcação obrigatória"
+            ariaErrorMessage="Você deve marcar pelo menos uma nota"
             setNota={setNota}
           />
 
@@ -75,6 +109,9 @@ function Home() {
             label="Nome"
             id="nome"
             name="nome"
+            isValid={validacao.nome}
+            errorMessage="deve ter pelo menos 3 caracteres"
+            ariaErrorMessage="Campo nome deve ter pelo menos 3 caracteres"
             value={values.nome}
             onChange={handleChange}
           />
@@ -91,7 +128,27 @@ function Home() {
       {loading && (
         <Modal>
           <Loading />
-          <h5 className="modal-message">Aguarde, estamos processando</h5>
+          <h5
+            aria-details="Aguarde, estamos processando..."
+            className="modal-message"
+          >
+            Aguarde, estamos processando...
+          </h5>
+        </Modal>
+      )}
+      {cadastroConcluido && (
+        <Modal
+          setClose={() => {
+            setCadastroConcluido(false)
+          }}
+        >
+          <LogoSmall height={64} />
+          <h5
+            aria-details="Obrigado por avaliar nossos serviços."
+            className="modal-message"
+          >
+            Obrigado por avaliar nossos serviços.
+          </h5>
         </Modal>
       )}
     </section>

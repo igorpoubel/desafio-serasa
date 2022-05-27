@@ -14,10 +14,22 @@
 
   .star {
     cursor: pointer;
-    &.hover, &.checked {
+    &.checked {
       .content-fill {
         fill: #f5c542;
       }
     }
+    &.hover {
+      .content-fill {
+        fill: #dbb651;
+      }
+    }
+  }
+
+  .input-error-message {
+    color: red;
+    font-size: 10px;
+    display: block;
+    text-align: center;
   }
 }

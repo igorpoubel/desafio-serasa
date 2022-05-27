@@ -10,9 +10,19 @@ interface Props {
   label: string
   nota: number
   setNota: (n: number) => void
+  isValid?: boolean
+  errorMessage?: string
+  ariaErrorMessage?: string
 }
 
-function StarInput({ label, nota, setNota }: Props) {
+function StarInput({
+  label,
+  nota,
+  isValid,
+  errorMessage,
+  ariaErrorMessage,
+  setNota,
+}: Props) {
   const [hoverNota, setHoverNota] = useState(0)
 
   const handleEnter = (n: number) => {
@@ -25,10 +35,25 @@ function StarInput({ label, nota, setNota }: Props) {
 
   // eslint-disable-next-line react/jsx-filename-extension
   return (
-    <div className="star-wrapper input-space input-100w">
+    <div
+      className={classNames(
+        'star-wrapper',
+        'input-space',
+        'input-100w',
+        !isValid ? 'input-error' : ''
+      )}
+    >
       {label && (
         <h5 className="input-label" aria-label={label}>
-          {label}
+          {label}{' '}
+          {!isValid && (
+            <span
+              aria-details={ariaErrorMessage}
+              className="input-error-message"
+            >
+              {errorMessage}
+            </span>
+          )}
         </h5>
       )}
       <div className="star-input">

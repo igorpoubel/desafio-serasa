@@ -107,6 +107,15 @@
 }
 
 .loader-icon {
+  .p1,.p2,.p3,.p4,.p5,.p6,.p7 {
+    animation-delay: 0.5s;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    opacity: 0.44;
+    transform-origin: center center;
+    transform-box: fill-box;
+  }
+
   .p1 {
     animation: scale1 1s infinite;
   }

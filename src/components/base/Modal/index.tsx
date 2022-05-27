@@ -2,14 +2,17 @@ import type { ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
 import Backdrop from '../Backdrop'
+import Button from '../Button'
+import Close from '../Icons/Close'
 import Loading from '../Loading'
 import './style.scss'
 
 interface Props {
   children: ReactNode
+  setClose?: () => void
 }
 
-const Modal = ({ children }: Props) => {
+const Modal = ({ children, setClose }: Props) => {
   const body = window?.document?.body
 
   if (!body) {
@@ -18,7 +21,14 @@ const Modal = ({ children }: Props) => {
 
   return ReactDOM.createPortal(
     <>
-      <div className="modal">{children}</div>
+      <div className="modal">
+        {setClose && (
+          <button type="button" className="modal-close" onClick={setClose}>
+            <Close />
+          </button>
+        )}
+        <div className="modal-content">{children}</div>
+      </div>
       <Backdrop />
     </>,
     body

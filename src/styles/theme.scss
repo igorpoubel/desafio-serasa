@@ -39,6 +39,10 @@ body {
     color: var(--color-dark-high);
   }
 
+  .df {
+    display: flex;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
   }

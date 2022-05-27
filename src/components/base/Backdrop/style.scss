@@ -8,5 +8,6 @@
   margin: 0;
   padding: 0;
   z-index: 1000;
-  background-color: rgba(66, 66, 66, 0.4) !important;
+  backdrop-filter: blur(6px);
+  background-color: var(--color-dark-low) !important;
 }
